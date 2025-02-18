@@ -1,7 +1,10 @@
-import type { NextConfig } from "next";
-
-const nextConfig: NextConfig = {
-  /* config options here */
+const nextConfig = {
+  typescript: {
+    ignoreBuildErrors: false,
+  },
+  experimental: {
+    serverComponentsExternalPackages: ["@prisma/client"],
+  },
 };
 
-export default nextConfig;
+module.exports = nextConfig;

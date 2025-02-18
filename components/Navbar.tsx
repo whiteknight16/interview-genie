@@ -1,10 +1,16 @@
 "use client";
 
 import React, { useState } from "react";
-import { SignedOut, SignedIn, UserButton, SignInButton } from "@clerk/nextjs";
+import {
+  SignedOut,
+  SignedIn,
+  UserButton,
+  SignInButton,
+  SingedIn,
+} from "@clerk/nextjs";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import { Menu, X } from "lucide-react"; // Icons for mobile menu
+import { Menu, X } from "lucide-react";
 import ModeToggle from "@/components/ModeToggle";
 
 function Navbar() {
@@ -19,6 +25,7 @@ function Navbar() {
         </h1>
       </Link>
 
+      {/* Navlinks visible only after login */}
       {/* Middle: Nav Links (Hidden on Mobile) */}
       <div className="hidden md:flex gap-6">
         <SignedIn>
@@ -55,13 +62,13 @@ function Navbar() {
           onClick={() => setIsOpen(!isOpen)}
           aria-label="Toggle menu"
         >
-          {isOpen ? <X size={24} /> : <Menu size={24} />}
+          <SignedIn>{isOpen ? <X size={24} /> : <Menu size={24} />}</SignedIn>
         </button>
       </div>
 
       {/* Mobile Dropdown Menu */}
       {isOpen && (
-        <div className="absolute top-16 left-0 w-full bg-gray-100 dark:bg-gray-900 shadow-md md:hidden flex flex-col items-center gap-4 py-4">
+        <div className="absolute top-16 left-0 w-full bg-gray-100 dark:bg-gray-900 shadow-md md:hidden flex flex-col items-center gap-2 py-4">
           <SignedIn>
             <Link href="/dashboard" className="hover:text-primary">
               Industrial Insights

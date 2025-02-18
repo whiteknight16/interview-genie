@@ -5,22 +5,25 @@ import { ThemeProvider } from "../providers/ThemeProvider";
 import Navbar from "@/components/Navbar";
 const montserrat = Montserrat({ subsets: ["latin"] });
 import { ClerkProvider } from "@clerk/nextjs";
-import { dark, neobrutalism } from "@clerk/themes";
-
+import { neobrutalism } from "@clerk/themes";
+import { checkUser } from "../lib/checkUser";
+import { Toaster } from "@/components/ui/sonner";
 export const metadata: Metadata = {
   title: "Interview Genie",
   description: "Get Interview Ready 😉",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  await checkUser();
   return (
     <ClerkProvider appearance={{ baseTheme: [neobrutalism] }}>
       <html lang="en" suppressHydrationWarning>
         <body className={`${montserrat.className}  antialiased`}>
+          <Toaster />
           <ThemeProvider
             attribute="class"
             defaultTheme="system"
