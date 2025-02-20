@@ -21,6 +21,8 @@ export const generateAiInsights = async (industry: string) => {
     Include at least 6 common roles for salary ranges.
     Growth rate should be a percentage.
     Include at least 6 skills and trends.
+    The given data should be more of India specific.
+    Salary should be in LPA and in Indian Rupees
   `;
 
   const result = await model.generateContent(prompt);
@@ -40,6 +42,10 @@ export async function getIndustryInsights() {
 
   const user = await db.user.findUnique({
     where: { clerkUserId: userId },
+    select: {
+      industry: true,
+      industryInsight: true,
+    },
   });
 
   if (!user) {

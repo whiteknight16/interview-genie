@@ -79,9 +79,9 @@ function OnboardingForm({ industries }: OnboardingFormProps) {
   };
   useEffect(() => {
     if (updateResult?.success && !updateLoading) {
-      toast.success("Profile updated successfully");
+      toast("Profile updated successfully");
       router.push("/dashboard");
-      router.refresh();
+      // router.refresh();
     }
   }, [updateResult, updateLoading]);
 

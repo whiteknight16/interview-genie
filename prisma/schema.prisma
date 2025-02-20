@@ -72,27 +72,29 @@ model Assessment{
   @@index([userId])
 }
 
-model CoverLetter{
-  id String @id @default(cuid())
-  userId String
-  user User @relation(fields: [userId], references: [id])
-  content String
-  jobDescription String?
-  companyName String?
-  jobTitle String?
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  
+model CoverLetter {
+  id              String    @id @default(cuid())
+  userId          String
+  user            User      @relation(fields: [userId], references: [id])
+  content         String    // Markdown content
+  jobDescription  String?
+  companyName     String    // Name of the company applying to
+  jobTitle        String    // Position applying for
+  status          String    @default("draft") // draft, completed
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+
+  @@index([userId])
 }
-
-model Resume{
-  id String @unique @id
-  userId String @unique
-  user User  @relation(fields: [userId], references: [id])
-  content String 
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
+model Resume {
+  id          String    @id @default(cuid())
+  userId      String    @unique    // One resume per user
+  user        User      @relation(fields: [userId], references: [id])
+  content     String    @db.Text // Markdown content
+  atsScore    Float?
+  feedback    String?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
 }
 
 
