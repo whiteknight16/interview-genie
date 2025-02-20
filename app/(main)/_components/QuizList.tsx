@@ -38,7 +38,7 @@ export default function QuizList({ assessments }) {
             </div>
             <Button
               onClick={() => router.push("/interview/mock")}
-              className="dark:bg-gray-800 dark:hover:bg-gray-700"
+              className=" dark:bg-blue-600"
             >
               Start New Quiz
             </Button>

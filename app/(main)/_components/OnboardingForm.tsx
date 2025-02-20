@@ -81,7 +81,7 @@ function OnboardingForm({ industries }: OnboardingFormProps) {
     if (updateResult?.success && !updateLoading) {
       toast("Profile updated successfully");
       router.push("/dashboard");
-      // router.refresh();
+      router.refresh();
     }
   }, [updateResult, updateLoading]);
 
