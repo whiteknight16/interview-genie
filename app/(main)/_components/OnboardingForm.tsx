@@ -75,15 +75,16 @@ function OnboardingForm({ industries }: OnboardingFormProps) {
       });
     } catch (error) {
       console.log("Error in onboarding:", error.message);
+      toast.error("Error updating profile. Please try again.");
     }
   };
   useEffect(() => {
     if (updateResult?.success && !updateLoading) {
-      toast("Profile updated successfully");
+      toast.success("Profile updated successfully");
       router.push("/dashboard");
       router.refresh();
     }
-  }, [updateResult, updateLoading]);
+  }, [updateResult, updateLoading, router]);
 
   return (
     <div className="flex justify-center w-full items-start min-h-screen p-3 dark:bg-gray-900">
